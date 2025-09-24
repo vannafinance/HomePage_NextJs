@@ -50,4 +50,5 @@ const PartnersSection: React.FC<PartnersSectionProps> = ({ partners }) => {
   );
 };
 
+
 export default PartnersSection;

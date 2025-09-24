@@ -68,18 +68,19 @@ const Accordion = () => {
         <img
           className="hidden lg:block max-w-[560px] object-contain rounded-2xl"
           src={accordionData[openIndex].imgSrc}
+          alt={`${accordionData[openIndex].title} trading interface`}
         />
         <div className="flex-1 py-2 justify-start items-start flex flex-col gap-8 w-full text-white">
           {accordionData.map((item, index) => (
-            <>
+            <React.Fragment key={index}>
               <img
                 className={`block lg:hidden w-full object-contain rounded-xl ${
                   openIndex === index ? "" : "hidden"
                 }`}
                 src={accordionData[openIndex].imgSrc}
+                alt={`${item.title} trading interface`}
               />
               <div
-                key={index}
                 className={`w-full lg:w-fit lg:max-w-[360px] pl-5 border-l-4 flex flex-col gap-6 ${
                   openIndex === index
                     ? "border-[#9064e0]"
@@ -104,9 +105,9 @@ const Accordion = () => {
                     </div>
                   </div>
                   {openIndex === index ? (
-                    <img src="/icons/upArrow.svg" className="w-8 h-8" />
+                    <img src="/icons/upArrow.svg" className="w-8 h-8" alt="Collapse section" />
                   ) : (
-                    <img src="/icons/downArrow.svg" className="w-8 h-8" />
+                    <img src="/icons/downArrow.svg" className="w-8 h-8" alt="Expand section" />
                   )}
                 </div>
                 {openIndex === index && (
@@ -137,12 +138,13 @@ const Accordion = () => {
                       <img
                         src="/icons/arrow.svg"
                         className="w-5 h-5 relative"
+                        alt="Arrow icon"
                       />
                     </Button>
                   </div>
                 )}
               </div>
-            </>
+            </React.Fragment>
           ))}
         </div>
       </div>

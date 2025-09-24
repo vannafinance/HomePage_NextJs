@@ -1,0 +1,111 @@
+.header {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    z-index: 9999;
+  }
+  
+  .nav__toggle,
+  .nav__close {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .nav__cta {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .nav__button {
+      display: none;
+    }
+  
+    .nav__menu {
+      position: fixed;
+      z-index: 50;
+      top: -100%;
+      left: 0;
+      /* background-color: white; */
+      /* backdrop-filter: blur(16px); */
+      /* -webkit-backdrop-filter: blur(16px); */
+      width: 100vw;
+      height: fit-content;
+      padding: 16px;
+      padding-bottom: 32px;
+      transition: all ease-in-out 0.7s;
+      /* box-shadow: -73px 188px 56px 0px rgba(0, 0, 0, 0.00), -47px 120px 52px 0px rgba(0, 0, 0, 0.01), -26px 68px 44px 0px rgba(0, 0, 0, 0.05), -12px 30px 32px 0px rgba(0, 0, 0, 0.09), -3px 8px 18px 0px rgba(0, 0, 0, 0.10); */
+      box-shadow: -73px 188px 56px 0px rgba(0, 0, 0, 0.00), -47px 120px 52px 0px rgba(0, 0, 0, 0.01), -26px 68px 44px 0px rgba(0, 0, 0, 0.05), -12px 30px 32px 0px rgba(0, 0, 0, 0.09), -15px 20px 18px 0px rgba(0, 0, 0, 0.10)
+    }
+  }
+  
+  @media screen and (max-width: 300px) {
+    .nav__menu {
+      padding: 4rem 1rem 2rem;
+    }
+  
+    .nav__list {
+      row-gap: 1rem;
+    }
+  
+    .nav__cta {
+      padding: 8px 16px;
+      font-size: 12px;
+      margin-top: 1rem;
+      width: auto;
+      white-space: nowrap;
+    }
+  }
+  
+  .nav__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.5rem;
+  }
+  
+  .nav__link {
+    color: #76737B;
+    text-align: center;
+    font-family: "Public Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    padding: 0px 8px;
+    transition: color 0.4s;
+  }
+  
+  .nav__link:hover {
+    color: black;
+  }
+  
+  .nav__close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+  }
+  
+  .show-menu {
+    top: 65px;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .nav {
+      height: calc(var(--header-height) + 1rem);
+    }
+  
+    .nav__toggle,
+    .nav__close {
+      display: none;
+    }
+  
+    .nav__list {
+      flex-direction: row;
+      column-gap: 32px;
+    }
+  }

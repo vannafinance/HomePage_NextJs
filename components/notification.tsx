@@ -38,7 +38,7 @@ const Notification = ({
 
   return (
     <div
-      className={`flex items-center p-4 mb-4 border-l-4 rounded-r-lg ${colors[type]}`}
+      className={`flex fixed bottom-5 left-5 items-center p-4 mb-4 border-l-4 rounded-r-lg ${colors[type]}`}
       role="alert"
     >
       <div className="ml-3 text-sm font-medium">{icons[type]}</div>

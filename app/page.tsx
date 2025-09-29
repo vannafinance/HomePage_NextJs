@@ -93,8 +93,8 @@ const Home = () => {
   // Function to track the section in view
   useEffect(() => {
     const handleScroll = () => {
-      if (typeof window === 'undefined') return;
-      
+      if (typeof window === "undefined") return;
+
       const lenderSection = document.getElementById("lender");
       const traderSection = document.getElementById("trader");
 
@@ -102,7 +102,8 @@ const Home = () => {
       const traderRect = traderSection?.getBoundingClientRect();
 
       // Check if the lender section is in view
-      if ( lenderRect &&
+      if (
+        lenderRect &&
         lenderRect.top <= window.innerHeight / 2 &&
         lenderRect.bottom >= window.innerHeight / 2
       ) {
@@ -119,7 +120,7 @@ const Home = () => {
       }
     };
 
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       window.addEventListener("scroll", handleScroll);
       return () => window.removeEventListener("scroll", handleScroll);
     }
@@ -130,7 +131,7 @@ const Home = () => {
       <HeroSection />
       <BenefitsSection />
       <section className="relative h-fit w-full flex flex-col">
-        <RoleSelector 
+        <RoleSelector
           selectedRole={selectedRole}
           setSelectedRole={setSelectedRole}
           scrollToElement={scrollToElement}

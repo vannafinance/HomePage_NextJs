@@ -50,20 +50,34 @@ body {
 
 .border-style {
   background: linear-gradient(#181822, #181822) padding-box,
-    linear-gradient(to right, rgba(245, 171, 161, 1) 40%, rgba(112, 58, 230, 1) 100%) border-box;
+    linear-gradient(
+        to right,
+        rgba(245, 171, 161, 1) 40%,
+        rgba(112, 58, 230, 1) 100%
+      )
+      border-box;
   border-radius: 24px;
   border: 1px solid transparent;
 }
 
 .border-white-style {
   background: linear-gradient(white, white) padding-box,
-    linear-gradient(to right, rgba(245, 171, 161, 1) 40%, rgba(112, 58, 230, 1) 100%) border-box;
+    linear-gradient(
+        to right,
+        rgba(245, 171, 161, 1) 40%,
+        rgba(112, 58, 230, 1) 100%
+      )
+      border-box;
   border-radius: 24px;
   border: 1px solid transparent;
 }
 
 .gradient-text {
-  background: linear-gradient(to right, rgba(245, 171, 161, 1) 20%, rgba(112, 58, 230, 1) 100%);
+  background: linear-gradient(
+    to right,
+    rgba(245, 171, 161, 1) 20%,
+    rgba(112, 58, 230, 1) 100%
+  );
   color: transparent;
   background-clip: text;
 }
@@ -75,7 +89,7 @@ body {
   align-items: center;
   gap: 10px;
   border-radius: 8px;
-  background: linear-gradient(91deg, #F5ABA1 0.04%, #703AE6 100.04%);
+  background: linear-gradient(91deg, #f5aba1 0.04%, #703ae6 100.04%);
   color: white;
 }
 
@@ -93,7 +107,7 @@ body {
 
 /* Primary color for text */
 .text-primary {
-  color: #703AE6;
+  color: #703ae6;
 }
 
 /* Background color for dark sections */
@@ -103,9 +117,9 @@ body {
 
 /* Primary color variable */
 :root {
-  --primary: #703AE6;
+  --primary: #703ae6;
 }
 
 .border-primary {
-  border-color: #703AE6;
+  border-color: #703ae6;
 }

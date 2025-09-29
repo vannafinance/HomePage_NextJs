@@ -26,7 +26,10 @@ export default function TiltImage({
   width,
   height,
 }: TiltImageProps) {
-  const [rotation, setRotation] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [rotation, setRotation] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -65,7 +68,14 @@ export default function TiltImage({
           style={{ transform }}
         />
       ) : (
-        <img src={typeof src === 'string' ? src : src.src} alt={alt} className={imgClass} style={{ transform }} />
+        <Image
+          src={typeof src === "string" ? src : src.src}
+          alt={alt || "Interactive image"}
+          width={width || 400}
+          height={height || 300}
+          className={imgClass}
+          style={{ transform }}
+        />
       )}
     </div>
   );

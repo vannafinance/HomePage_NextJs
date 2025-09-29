@@ -1,18 +1,11 @@
 const accessToken = process.env.NEXT_GALAXE_ACCESSTOKEN as string | undefined;
 
 // Define the expected GraphQL response structure
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface GalxeQuest {
-  id: string;
-  name: string;
-  status: string;
-  credentialGroups: CredentialGroup[];
-}
 
 interface CredentialGroup {
   id: string;
   name: string;
-  conditionRelation: 'ALL' | 'ANY';
+  conditionRelation: "ALL" | "ANY";
   conditions: Condition[];
   rewards: Reward[];
 }
@@ -53,23 +46,27 @@ async function checkUserEligibility(
   accessToken: string
 ): Promise<EligibilityResponse> {
   // Normalize EVM address (lowercase, validate format)
-  const normalizedAddress = userAddress.toLowerCase().startsWith('0x') ? userAddress.toLowerCase() : null;
+  const normalizedAddress = userAddress.toLowerCase().startsWith("0x")
+    ? userAddress.toLowerCase()
+    : null;
   if (!normalizedAddress || !/^0x[a-fA-F0-9]{40}$/.test(normalizedAddress)) {
-    throw new Error('Invalid EVM address format');
+    throw new Error("Invalid EVM address format");
   }
 
   if (!accessToken) {
-    throw new Error('Access token is not provided');
+    throw new Error("Access token is not provided");
   }
 
-  const response = await fetch('https://graphigo-business.prd.galaxy.eco/query', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'access-token': accessToken, // Your Galxe access token (from developer portal)
-    },
-    body: JSON.stringify({
-      query: `query CheckUserEligibility($questId: ID!, $address: String!) {
+  const response = await fetch(
+    "https://graphigo-business.prd.galaxy.eco/query",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "access-token": accessToken, // Your Galxe access token (from developer portal)
+      },
+      body: JSON.stringify({
+        query: `query CheckUserEligibility($questId: ID!, $address: String!) {
         quest(id: $questId) {
           id
           name
@@ -91,9 +88,10 @@ async function checkUserEligibility(
           }
         }
       }`,
-      variables: { questId: String(questId), address: normalizedAddress },
-    }),
-  });
+        variables: { questId: String(questId), address: normalizedAddress },
+      }),
+    }
+  );
 
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -108,30 +106,37 @@ async function checkUserEligibility(
 
   const quest = data.data?.quest;
   if (!quest) {
-    throw new Error('Quest not found or no data returned');
+    throw new Error("Quest not found or no data returned");
   }
 
   // Check if quest is active
-  const isQuestActive = quest.status === 'ACTIVE';
+  const isQuestActive = quest.status === "ACTIVE";
 
-  const eligibilityResults = quest.credentialGroups.map((group: CredentialGroup) => {
-    // Check conditions based on relation (ALL or ANY)
-    const conditionsMet = group.conditionRelation === 'ALL'
-      ? group.conditions.every((c: Condition) => c.eligible)
-      : group.conditions.some((c: Condition) => c.eligible);
+  const eligibilityResults = quest.credentialGroups.map(
+    (group: CredentialGroup) => {
+      // Check conditions based on relation (ALL or ANY)
+      const conditionsMet =
+        group.conditionRelation === "ALL"
+          ? group.conditions.every((c: Condition) => c.eligible)
+          : group.conditions.some((c: Condition) => c.eligible);
 
-    const eligibleRewards = group.rewards.filter((r: Reward) => r.eligible);
+      const eligibleRewards = group.rewards.filter((r: Reward) => r.eligible);
 
-    return {
-      groupId: group.id,
-      groupName: group.name,
-      conditionsMet,
-      eligibleRewards,
-    };
-  });
+      return {
+        groupId: group.id,
+        groupName: group.name,
+        conditionsMet,
+        eligibleRewards,
+      };
+    }
+  );
 
-  const hasCompletedGroups = eligibilityResults.some((r: EligibilityResult) => r.conditionsMet);
-  const hasEligibleRewards = eligibilityResults.some((r: EligibilityResult) => r.eligibleRewards.length > 0);
+  const hasCompletedGroups = eligibilityResults.some(
+    (r: EligibilityResult) => r.conditionsMet
+  );
+  const hasEligibleRewards = eligibilityResults.some(
+    (r: EligibilityResult) => r.eligibleRewards.length > 0
+  );
   const isEligible = hasCompletedGroups && hasEligibleRewards;
   const isCompleted = isEligible && isQuestActive; // True if completed AND quest is active
 
@@ -148,17 +153,17 @@ async function checkUserEligibility(
 }
 
 // Example usage (optional, for testing)
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
   (async () => {
     try {
       const result = await checkUserEligibility(
         12345, // Replace with actual quest ID
-        '0x742d35Cc6bBBFe8f2f2C27bD424cC7f2e4b0b0a4',
-        accessToken || ''
+        "0x742d35Cc6bBBFe8f2f2C27bD424cC7f2e4b0b0a4",
+        accessToken || ""
       );
-      console.log('Eligibility Result:', result);
+      console.log("Eligibility Result:", result);
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   })();
 }

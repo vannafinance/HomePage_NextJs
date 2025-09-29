@@ -1,7 +1,7 @@
 "use client";
 
-
 import React, { useState } from "react";
+import Image from "next/image";
 import Button from "./button";
 
 const Accordion = () => {
@@ -65,20 +65,24 @@ const Accordion = () => {
   return (
     <div className="custom-container py-[80px] md:py-[100px] flex-col justify-start items-center gap-20 inline-flex">
       <div className="flex flex-col lg:flex-row justify-start lg:items-center gap-20 flex-wrap">
-        <img
+        <Image
           className="hidden lg:block max-w-[560px] object-contain rounded-2xl"
           src={accordionData[openIndex].imgSrc}
           alt={`${accordionData[openIndex].title} trading interface`}
+          width={560}
+          height={300}
         />
         <div className="flex-1 py-2 justify-start items-start flex flex-col gap-8 w-full text-white">
           {accordionData.map((item, index) => (
             <React.Fragment key={index}>
-              <img
+              <Image
                 className={`block lg:hidden w-full object-contain rounded-xl ${
                   openIndex === index ? "" : "hidden"
                 }`}
                 src={accordionData[openIndex].imgSrc}
                 alt={`${item.title} trading interface`}
+                width={400}
+                height={300}
               />
               <div
                 className={`w-full lg:w-fit lg:max-w-[360px] pl-5 border-l-4 flex flex-col gap-6 ${
@@ -105,9 +109,21 @@ const Accordion = () => {
                     </div>
                   </div>
                   {openIndex === index ? (
-                    <img src="/icons/upArrow.svg" className="w-8 h-8" alt="Collapse section" />
+                    <Image
+                      src="/icons/upArrow.svg"
+                      className="w-8 h-8"
+                      alt="Collapse section"
+                      width={32}
+                      height={32}
+                    />
                   ) : (
-                    <img src="/icons/downArrow.svg" className="w-8 h-8" alt="Expand section" />
+                    <Image
+                      src="/icons/downArrow.svg"
+                      className="w-8 h-8"
+                      alt="Expand section"
+                      width={32}
+                      height={32}
+                    />
                   )}
                 </div>
                 {openIndex === index && (
@@ -130,15 +146,16 @@ const Accordion = () => {
                     <Button
                       className="w-fit p-2.5 rounded-[10px] border-style justify-center items-center gap-2 inline-flex cursor-pointer"
                       redirectTo={item.tryNowRedirectTo}
-                      
                     >
                       <div className="gradient-text text-base font-semibold leading-tight">
                         Trade now
                       </div>
-                      <img
+                      <Image
                         src="/icons/arrow.svg"
                         className="w-5 h-5 relative"
                         alt="Arrow icon"
+                        width={20}
+                        height={20}
                       />
                     </Button>
                   </div>

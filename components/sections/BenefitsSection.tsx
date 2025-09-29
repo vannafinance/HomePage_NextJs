@@ -19,9 +19,9 @@ const BenefitsSection = () => {
               <div className="order-2 md:order-1 text-start text-[24px]">
                 <h3>Amplify Your Margin Balance with Composable Leverage</h3>
                 <p className="text-sm font-[400] text-[#B5B3B3] mt-[10px]">
-                  Maximize your trading potential with undercollateralized
-                  loans and allocate it across derivatives, spot, automated
-                  vaults, yield strategies, and money markets.
+                  Maximize your trading potential with undercollateralized loans
+                  and allocate it across derivatives, spot, automated vaults,
+                  yield strategies, and money markets.
                 </p>
               </div>
               <div className="order-1 md:order-2 flex justify-center pb-5 md:p-0 md:pt-5 lg:p-4">
@@ -68,9 +68,9 @@ const BenefitsSection = () => {
               <div className="text-start text-[24px] mt-[32px]">
                 <h3>Leverage Your Assets with LSTs and LRTs</h3>
                 <p className="text-sm font-[400] text-[#B5B3B3] mt-[10px]">
-                  Unlock liquidity by using these assets as collateral to
-                  borrow additional margin, maximizing capital efficiency
-                  while keeping your assets actively in play.
+                  Unlock liquidity by using these assets as collateral to borrow
+                  additional margin, maximizing capital efficiency while keeping
+                  your assets actively in play.
                 </p>
               </div>
             </div>
@@ -84,8 +84,8 @@ const BenefitsSection = () => {
                 </p>
               </div>
               <div className="order-1 md:order-2 flex justify-center items-center ">
-                <Image 
-                  src="/images/benefits/chart.webp" 
+                <Image
+                  src="/images/benefits/chart.webp"
                   alt="Greeks dashboard analytics chart"
                   width={560}
                   height={400}

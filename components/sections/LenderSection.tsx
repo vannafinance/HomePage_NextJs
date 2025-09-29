@@ -55,9 +55,8 @@ const LenderSection = () => {
           </div>
           <div className="flex-col justify-start items-start flex">
             <div className="text-[#636060] text-base font-medium leading-tight text-left">
-              Start by connecting your preferred crypto wallet. This allows
-              you to access the platform and manage your investments
-              seamlessly.
+              Start by connecting your preferred crypto wallet. This allows you
+              to access the platform and manage your investments seamlessly.
             </div>
           </div>
         </div>
@@ -80,9 +79,9 @@ const LenderSection = () => {
           </div>
           <div className="flex-col justify-start items-start flex">
             <div className="text-[#636060] text-base font-medium leading-tight text-left">
-              Browse our available pools across various assets. Choose the
-              one that fits your strategy and view detailed stats like APY
-              and pool size.
+              Browse our available pools across various assets. Choose the one
+              that fits your strategy and view detailed stats like APY and pool
+              size.
             </div>
           </div>
         </div>
@@ -106,8 +105,7 @@ const LenderSection = () => {
           <div className="flex-col justify-start items-start flex">
             <div className="text-[#636060] text-base font-medium leading-tight text-left">
               Deposit your chosen asset into the pool. This instantly begins
-              generating rewards, and you can track your earnings in real
-              time.
+              generating rewards, and you can track your earnings in real time.
             </div>
           </div>
         </div>

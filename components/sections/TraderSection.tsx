@@ -5,7 +5,10 @@ import Accordion from "../accordion";
 
 const TraderSection = () => {
   return (
-    <div id="trader" className="p-10 md:p-20 w-full bg-bgColor flex flex-col pb-4 md:pb-20">
+    <div
+      id="trader"
+      className="p-10 md:p-20 w-full bg-bgColor flex flex-col pb-4 md:pb-20"
+    >
       <div className="w-full h-full custom-container pt-[60px] md:pt-[80px] pb-[60px] flex-col justify-start items-start gap-12 inline-flex">
         <div className="pt-6 pb-10 flex flex-col lg:flex-row justify-start items-center gap-12">
           <div className="order-2 lg:order-1 flex-col justify-start items-start gap-8 inline-flex">
@@ -22,28 +25,40 @@ const TraderSection = () => {
               </div>
               <div className="py-2 flex-col justify-start items-start gap-4 flex">
                 <div className="justify-start items-start gap-4 inline-flex">
-                  <Image src="/icons/cube.svg" className="w-4 h-4 relative" alt="Cube icon" width={16} height={16} />
+                  <Image
+                    src="/icons/cube.svg"
+                    className="w-4 h-4 relative"
+                    alt="Cube icon"
+                    width={16}
+                    height={16}
+                  />
                   <div className="w-full flex flex-col">
                     <span className="text-white text-base font-medium text-left leading-tight">
                       Deposit Collateral
                     </span>
                     <span className="text-[#b5b3b3] text-base font-medium text-left leading-tight">
                       Securely provide your LSTs, LRTs, or native assets to
-                      obtain an undercollateralized loan and boost your
-                      trading capacity.
+                      obtain an undercollateralized loan and boost your trading
+                      capacity.
                     </span>
                   </div>
                 </div>
                 <div className="justify-start items-start gap-4 inline-flex">
-                  <Image src="/icons/cube.svg" className="w-4 h-4 relative" alt="Cube icon" width={16} height={16} />
+                  <Image
+                    src="/icons/cube.svg"
+                    className="w-4 h-4 relative"
+                    alt="Cube icon"
+                    width={16}
+                    height={16}
+                  />
                   <div className="w-full flex flex-col">
                     <span className="text-white text-base font-medium text-left leading-tight">
                       Borrow with Leverage
                     </span>
                     <span className="text-[#b5b3b3] text-base font-medium text-left leading-tight">
                       Choose your leverage up to 10x and borrow instantly
-                      against your collateral to increase your market
-                      exposure across derivatives, spot, and other markets.
+                      against your collateral to increase your market exposure
+                      across derivatives, spot, and other markets.
                     </span>
                   </div>
                 </div>
@@ -74,8 +89,6 @@ const TraderSection = () => {
         <Accordion />
       </div>
 
-      
-
       {/* Greeks Dashboard Section */}
       <div className=" w-full min-h-screen flex flex-col justify-center items-center py-8 md:py-20">
         <div className="custom-container w-full flex flex-col justify-center items-center gap-8 md:gap-16">
@@ -97,20 +110,32 @@ const TraderSection = () => {
             <div className="xl:hidden w-full grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="p-5 bg-[#1a1a1a] rounded-2xl border border-white/20">
                 <div className="flex items-start gap-3 mb-3">
-                  <Image src="/icons/cube.svg" className="w-5 h-5 mt-1 flex-shrink-0" alt="Cube icon" width={20} height={20} />
+                  <Image
+                    src="/icons/cube.svg"
+                    className="w-5 h-5 mt-1 flex-shrink-0"
+                    alt="Cube icon"
+                    width={20}
+                    height={20}
+                  />
                   <span className="text-white text-base font-semibold leading-tight">
                     Multi-Leg Strategies & Payoff Graphs:
                   </span>
                 </div>
                 <p className="text-[#b5b3b3] text-sm leading-relaxed">
-                  Build complex multi-leg options strategies like straddles
-                  and spreads, visualized with real-time payoff graphs for
-                  better strategy management.
+                  Build complex multi-leg options strategies like straddles and
+                  spreads, visualized with real-time payoff graphs for better
+                  strategy management.
                 </p>
               </div>
               <div className="p-5 bg-[#1a1a1a] rounded-2xl border border-white/20">
                 <div className="flex items-start gap-3 mb-3">
-                  <Image src="/icons/cube.svg" className="w-5 h-5 mt-1 flex-shrink-0" alt="Cube icon" width={20} height={20} />
+                  <Image
+                    src="/icons/cube.svg"
+                    className="w-5 h-5 mt-1 flex-shrink-0"
+                    alt="Cube icon"
+                    width={20}
+                    height={20}
+                  />
                   <span className="text-white text-base font-semibold leading-tight">
                     Live Position Simulation:
                   </span>
@@ -123,7 +148,13 @@ const TraderSection = () => {
               </div>
               <div className="p-5 bg-[#1a1a1a] rounded-2xl border border-white/20">
                 <div className="flex items-start gap-3 mb-3">
-                  <Image src="/icons/cube.svg" className="w-5 h-5 mt-1 flex-shrink-0" alt="Cube icon" width={20} height={20} />
+                  <Image
+                    src="/icons/cube.svg"
+                    className="w-5 h-5 mt-1 flex-shrink-0"
+                    alt="Cube icon"
+                    width={20}
+                    height={20}
+                  />
                   <span className="text-white text-base font-semibold leading-tight">
                     Real-Time Greeks Calculation:
                   </span>
@@ -136,7 +167,13 @@ const TraderSection = () => {
               </div>
               <div className="p-5 bg-[#1a1a1a] rounded-2xl border border-white/20">
                 <div className="flex items-start gap-3 mb-3">
-                  <Image src="/icons/cube.svg" className="w-5 h-5 mt-1 flex-shrink-0" alt="Cube icon" width={20} height={20} />
+                  <Image
+                    src="/icons/cube.svg"
+                    className="w-5 h-5 mt-1 flex-shrink-0"
+                    alt="Cube icon"
+                    width={20}
+                    height={20}
+                  />
                   <span className="text-white text-base font-semibold leading-tight">
                     Live PnL Tracking:
                   </span>
@@ -155,7 +192,13 @@ const TraderSection = () => {
               <div className="flex flex-col gap-6 max-w-[280px] flex-shrink-0">
                 <div className="p-5 bg-[#1a1a1a] rounded-2xl border border-white/20">
                   <div className="flex items-start gap-3 mb-3">
-                    <Image src="/icons/cube.svg" className="w-5 h-5 mt-1 flex-shrink-0" alt="Cube icon" width={20} height={20} />
+                    <Image
+                      src="/icons/cube.svg"
+                      className="w-5 h-5 mt-1 flex-shrink-0"
+                      alt="Cube icon"
+                      width={20}
+                      height={20}
+                    />
                     <span className="text-white text-base font-semibold leading-tight">
                       Multi-Leg Strategies & Payoff Graphs:
                     </span>
@@ -168,7 +211,13 @@ const TraderSection = () => {
                 </div>
                 <div className="p-5 bg-[#1a1a1a] rounded-2xl border border-white/20">
                   <div className="flex items-start gap-3 mb-3">
-                    <Image src="/icons/cube.svg" className="w-5 h-5 mt-1 flex-shrink-0" alt="Cube icon" width={20} height={20} />
+                    <Image
+                      src="/icons/cube.svg"
+                      className="w-5 h-5 mt-1 flex-shrink-0"
+                      alt="Cube icon"
+                      width={20}
+                      height={20}
+                    />
                     <span className="text-white text-base font-semibold leading-tight">
                       Live Position Simulation:
                     </span>
@@ -196,7 +245,13 @@ const TraderSection = () => {
               <div className="flex flex-col gap-6 max-w-[280px] flex-shrink-0">
                 <div className="p-5 bg-[#1a1a1a] rounded-2xl border border-white/20">
                   <div className="flex items-start gap-3 mb-3">
-                    <Image src="/icons/cube.svg" className="w-5 h-5 mt-1 flex-shrink-0" alt="Cube icon" width={20} height={20} />
+                    <Image
+                      src="/icons/cube.svg"
+                      className="w-5 h-5 mt-1 flex-shrink-0"
+                      alt="Cube icon"
+                      width={20}
+                      height={20}
+                    />
                     <span className="text-white text-base font-semibold leading-tight">
                       Real-Time Greeks Calculation:
                     </span>
@@ -209,7 +264,13 @@ const TraderSection = () => {
                 </div>
                 <div className="p-5 bg-[#1a1a1a] rounded-2xl border border-white/20">
                   <div className="flex items-start gap-3 mb-3">
-                    <Image src="/icons/cube.svg" className="w-5 h-5 mt-1 flex-shrink-0" alt="Cube icon" width={20} height={20} />
+                    <Image
+                      src="/icons/cube.svg"
+                      className="w-5 h-5 mt-1 flex-shrink-0"
+                      alt="Cube icon"
+                      width={20}
+                      height={20}
+                    />
                     <span className="text-white text-base font-semibold leading-tight">
                       Live PnL Tracking:
                     </span>

@@ -7,7 +7,13 @@ import Button from "../button";
 const Spline = React.lazy(() => import("@splinetool/react-spline"));
 
 // Wrapper component for Spline with error handling
-const SplineWrapper = ({ scene, onError }: { scene: string; onError: () => void }) => {
+const SplineWrapper = ({
+  scene,
+  onError,
+}: {
+  scene: string;
+  onError: () => void;
+}) => {
   const [hasError, setHasError] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -34,28 +40,29 @@ const SplineWrapper = ({ scene, onError }: { scene: string; onError: () => void 
 
     // Listen for WebGL context lost events
     const handleContextLost = (event: Event) => {
-      console.warn('WebGL context lost:', event);
+      console.warn("WebGL context lost:", event);
       event.preventDefault();
       setHasError(true);
       onError();
     };
 
     const handleContextRestored = () => {
-      console.log('WebGL context restored');
+      console.log("WebGL context restored");
       setHasError(false);
     };
 
     // Enhanced WebGL error handler for specific dimension issues
     const handleWebGLError = (event: ErrorEvent) => {
-      if (event.message && (
-        event.message.includes('WebGL') || 
-        event.message.includes('FRAMEBUFFER') ||
-        event.message.includes('GL_INVALID') ||
-        event.message.includes('glTexStorage2D') ||
-        event.message.includes('zero size') ||
-        event.message.includes('Attachment has zero size')
-      )) {
-        console.warn('WebGL error detected:', event.message);
+      if (
+        event.message &&
+        (event.message.includes("WebGL") ||
+          event.message.includes("FRAMEBUFFER") ||
+          event.message.includes("GL_INVALID") ||
+          event.message.includes("glTexStorage2D") ||
+          event.message.includes("zero size") ||
+          event.message.includes("Attachment has zero size"))
+      ) {
+        console.warn("WebGL error detected:", event.message);
         setHasError(true);
         onError();
       }
@@ -66,35 +73,37 @@ const SplineWrapper = ({ scene, onError }: { scene: string; onError: () => void 
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
         if (rect.width === 0 || rect.height === 0) {
-          console.warn('Container dimensions became zero, preventing WebGL errors');
+          console.warn(
+            "Container dimensions became zero, preventing WebGL errors"
+          );
           setHasError(true);
           onError();
         }
       }
     };
 
-    window.addEventListener('webglcontextlost', handleContextLost);
-    window.addEventListener('webglcontextrestored', handleContextRestored);
-    window.addEventListener('error', handleWebGLError);
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("webglcontextlost", handleContextLost);
+    window.addEventListener("webglcontextrestored", handleContextRestored);
+    window.addEventListener("error", handleWebGLError);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('webglcontextlost', handleContextLost);
-      window.removeEventListener('webglcontextrestored', handleContextRestored);
-      window.removeEventListener('error', handleWebGLError);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("webglcontextlost", handleContextLost);
+      window.removeEventListener("webglcontextrestored", handleContextRestored);
+      window.removeEventListener("error", handleWebGLError);
+      window.removeEventListener("resize", handleResize);
     };
   }, [onError, isReady]);
 
   if (hasError) {
     return (
-      <div 
+      <div
         ref={containerRef}
         className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl"
       >
-        <Image 
-          src="/images/heroImage.webp" 
-          className="w-full h-auto rounded-xl max-w-[700px]" 
+        <Image
+          src="/images/heroImage.webp"
+          className="w-full h-auto rounded-xl max-w-[700px]"
           alt="Vanna Finance hero illustration"
           width={900}
           height={600}
@@ -106,10 +115,10 @@ const SplineWrapper = ({ scene, onError }: { scene: string; onError: () => void 
 
   if (!isReady) {
     return (
-      <div 
+      <div
         ref={containerRef}
         className="w-full h-full bg-gray-100 rounded-xl animate-pulse flex items-center justify-center"
-        style={{ minWidth: '100px', minHeight: '100px' }}
+        style={{ minWidth: "100px", minHeight: "100px" }}
       >
         <div className="text-gray-500">Preparing 3D Scene...</div>
       </div>
@@ -118,29 +127,31 @@ const SplineWrapper = ({ scene, onError }: { scene: string; onError: () => void 
 
   try {
     return (
-      <div 
+      <div
         ref={containerRef}
         className="w-full h-full rounded-xl"
-        style={{ minWidth: '100px', minHeight: '100px' }}
+        style={{ minWidth: "100px", minHeight: "100px" }}
       >
         <Spline
           scene={scene}
           className="w-full h-full rounded-xl"
-          style={{ minWidth: '100px', minHeight: '100px' }}
+          style={{ minWidth: "100px", minHeight: "100px" }}
           onLoad={() => {
-            console.log('Spline scene loaded successfully');
+            console.log("Spline scene loaded successfully");
             // Verify canvas dimensions after load
             if (containerRef.current) {
-              const canvas = containerRef.current.querySelector('canvas');
+              const canvas = containerRef.current.querySelector("canvas");
               if (canvas && (canvas.width === 0 || canvas.height === 0)) {
-                console.warn('Canvas has zero dimensions after load, falling back');
+                console.warn(
+                  "Canvas has zero dimensions after load, falling back"
+                );
                 setHasError(true);
                 onError();
               }
             }
           }}
           onError={(error) => {
-            console.error('Spline loading error:', error);
+            console.error("Spline loading error:", error);
             setHasError(true);
             onError();
           }}
@@ -148,17 +159,17 @@ const SplineWrapper = ({ scene, onError }: { scene: string; onError: () => void 
       </div>
     );
   } catch (error) {
-    console.error('Spline component error:', error);
+    console.error("Spline component error:", error);
     setHasError(true);
     onError();
     return (
-      <div 
+      <div
         ref={containerRef}
         className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl"
       >
-        <Image 
-          src="/images/heroImage.webp" 
-          className="w-full h-auto rounded-xl max-w-[700px]" 
+        <Image
+          src="/images/heroImage.webp"
+          className="w-full h-auto rounded-xl max-w-[700px]"
           alt="Vanna Finance hero illustration"
           width={900}
           height={600}
@@ -177,60 +188,62 @@ const HeroSection = () => {
     // Check WebGL support
     const checkWebGLSupport = () => {
       try {
-        const canvas = document.createElement('canvas');
+        const canvas = document.createElement("canvas");
         // Set canvas size to prevent memory issues
         canvas.width = 1;
         canvas.height = 1;
-        
-        const gl = canvas.getContext('webgl', {
-          antialias: false,
-          alpha: false,
-          depth: false,
-          stencil: false,
-          preserveDrawingBuffer: false,
-          failIfMajorPerformanceCaveat: true
-        }) as WebGLRenderingContext | null || canvas.getContext('experimental-webgl', {
-          antialias: false,
-          alpha: false,
-          depth: false,
-          stencil: false,
-          preserveDrawingBuffer: false,
-          failIfMajorPerformanceCaveat: true
-        }) as WebGLRenderingContext | null;
-        
+
+        const gl =
+          (canvas.getContext("webgl", {
+            antialias: false,
+            alpha: false,
+            depth: false,
+            stencil: false,
+            preserveDrawingBuffer: false,
+            failIfMajorPerformanceCaveat: true,
+          }) as WebGLRenderingContext | null) ||
+          (canvas.getContext("experimental-webgl", {
+            antialias: false,
+            alpha: false,
+            depth: false,
+            stencil: false,
+            preserveDrawingBuffer: false,
+            failIfMajorPerformanceCaveat: true,
+          }) as WebGLRenderingContext | null);
+
         if (!gl) {
-          console.warn('WebGL not supported');
+          console.warn("WebGL not supported");
           setWebglSupported(false);
           canvas.remove();
           return false;
         }
-        
+
         // Check WebGL capabilities
         const maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
         const maxRenderbufferSize = gl.getParameter(gl.MAX_RENDERBUFFER_SIZE);
-        
+
         if (maxTextureSize < 1024 || maxRenderbufferSize < 1024) {
-          console.warn('WebGL capabilities insufficient for 3D rendering');
+          console.warn("WebGL capabilities insufficient for 3D rendering");
           setWebglSupported(false);
           canvas.remove();
           return false;
         }
-        
+
         // Test framebuffer creation to prevent the errors we're seeing
         const framebuffer = gl.createFramebuffer();
         if (!framebuffer) {
-          console.warn('Cannot create WebGL framebuffer');
+          console.warn("Cannot create WebGL framebuffer");
           setWebglSupported(false);
           canvas.remove();
           return false;
         }
-        
+
         // Clean up test resources
         gl.deleteFramebuffer(framebuffer);
         canvas.remove();
         return true;
       } catch (error) {
-        console.warn('WebGL support check failed:', error);
+        console.warn("WebGL support check failed:", error);
         setWebglSupported(false);
         return false;
       }
@@ -245,7 +258,9 @@ const HeroSection = () => {
   }, []);
 
   const handleSplineError = () => {
-    console.warn('Spline component failed to load, falling back to static image');
+    console.warn(
+      "Spline component failed to load, falling back to static image"
+    );
     setSplineError(true);
   };
 
@@ -253,21 +268,21 @@ const HeroSection = () => {
     // Suppress specific WebGL errors that are harmless but noisy
     const originalError = console.error;
     const originalWarn = console.warn;
-    
+
     console.error = (...args) => {
-      const message = args.join(' ');
+      const message = args.join(" ");
       // Filter out specific WebGL errors that don't affect functionality
       if (
-        message.includes('GL_INVALID_FRAMEBUFFER_OPERATION') ||
-        message.includes('FRAMEBUFFER_INCOMPLETE_ATTACHMENT') ||
-        message.includes('Framebuffer is incomplete') ||
-        message.includes('glClear: Framebuffer is incomplete') ||
-        message.includes('glDrawArrays: Framebuffer is incomplete') ||
-        message.includes('glDrawElements: Framebuffer is incomplete') ||
-        message.includes('glClearBufferfv: Framebuffer is incomplete') ||
-        message.includes('GL_INVALID_VALUE: glTexStorage2D') ||
-        message.includes('Texture dimensions must all be greater than zero') ||
-        message.includes('Attachment has zero size')
+        message.includes("GL_INVALID_FRAMEBUFFER_OPERATION") ||
+        message.includes("FRAMEBUFFER_INCOMPLETE_ATTACHMENT") ||
+        message.includes("Framebuffer is incomplete") ||
+        message.includes("glClear: Framebuffer is incomplete") ||
+        message.includes("glDrawArrays: Framebuffer is incomplete") ||
+        message.includes("glDrawElements: Framebuffer is incomplete") ||
+        message.includes("glClearBufferfv: Framebuffer is incomplete") ||
+        message.includes("GL_INVALID_VALUE: glTexStorage2D") ||
+        message.includes("Texture dimensions must all be greater than zero") ||
+        message.includes("Attachment has zero size")
       ) {
         // These are often false positives from Spline's internal rendering during initialization
         return;
@@ -276,10 +291,12 @@ const HeroSection = () => {
     };
 
     console.warn = (...args) => {
-      const message = args.join(' ');
+      const message = args.join(" ");
       if (
-        message.includes('WebGL: too many errors, no more errors will be reported') ||
-        message.includes('WEBGL_debug_renderer_info')
+        message.includes(
+          "WebGL: too many errors, no more errors will be reported"
+        ) ||
+        message.includes("WEBGL_debug_renderer_info")
       ) {
         return;
       }
@@ -313,7 +330,12 @@ const HeroSection = () => {
               className="rounded-[8px] flex gap-2.5 bg-[#F2ECFE] p-3 px-4"
               redirectTo="https://discord.gg/MmK9rsWdzS"
             >
-              <Image src="/icons/discordLogo.svg" alt="Discord logo" width={20} height={20} />
+              <Image
+                src="/icons/discordLogo.svg"
+                alt="Discord logo"
+                width={20}
+                height={20}
+              />
               <p className="text-base font-[600] text-primary">Join Discord</p>
             </Button>
             <Button
@@ -325,46 +347,46 @@ const HeroSection = () => {
           </div>
         </div>
         <div className="w-full flex justify-center items-center">
-          <Image 
-            src="/images/heroImage.webp" 
-            className="block lg:hidden w-full h-auto rounded-xl max-w-[700px]" 
+          <Image
+            src="/images/heroImage.webp"
+            className="block lg:hidden w-full h-auto rounded-xl max-w-[700px]"
             alt="Vanna Finance hero illustration"
             width={900}
             height={600}
             priority
           />
-          <div 
+          <div
             className="hidden lg:block w-full max-w-[900px] h-screen"
-            style={{ 
-              minWidth: '300px', 
-              minHeight: '300px',
-              position: 'relative'
+            style={{
+              minWidth: "300px",
+              minHeight: "300px",
+              position: "relative",
             }}
           >
             {webglSupported && !splineError ? (
-              <Suspense 
+              <Suspense
                 fallback={
-                  <div 
+                  <div
                     className="w-full h-screen bg-gray-100 rounded-xl animate-pulse flex items-center justify-center"
-                    style={{ minWidth: '300px', minHeight: '300px' }}
+                    style={{ minWidth: "300px", minHeight: "300px" }}
                   >
                     <div className="text-gray-500">Loading 3D Scene...</div>
                   </div>
                 }
               >
-                <SplineWrapper 
+                <SplineWrapper
                   scene="https://prod.spline.design/IBk2UFq-Ep8YlEIb/scene.splinecode"
                   onError={handleSplineError}
                 />
               </Suspense>
             ) : (
-              <div 
+              <div
                 className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl"
-                style={{ minWidth: '300px', minHeight: '300px' }}
+                style={{ minWidth: "300px", minHeight: "300px" }}
               >
-                <Image 
-                  src="/images/heroImage.webp" 
-                  className="w-full h-auto rounded-xl max-w-[700px]" 
+                <Image
+                  src="/images/heroImage.webp"
+                  className="w-full h-auto rounded-xl max-w-[700px]"
                   alt="Vanna Finance hero illustration"
                   width={900}
                   height={600}

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import "./style.css";
 import Button from "../../button";
@@ -23,20 +24,13 @@ interface CommunityMenuItem {
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
-  const [showDevelopersDropdown, setShowDevelopersDropdown] = useState<boolean>(false);
-  const [showCommunityDropdown, setShowCommunityDropdown] = useState<boolean>(false);
+  const [showDevelopersDropdown, setShowDevelopersDropdown] =
+    useState<boolean>(false);
+  const [showCommunityDropdown, setShowCommunityDropdown] =
+    useState<boolean>(false);
   const [showAppDropdown, setShowAppDropdown] = useState<boolean>(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const appMenu: AppMenuItem[] = [
-    { name: "Launch App", link: "https://app.vanna.finance/" },
-    { name: "Testnet", link: "https://testnet.vanna.finance/" },
-  ];
-
   const developersMenu: DevelopersMenuItem[] = [
-  //   { name: "User Docs", link: "https://docs.vanna.finance/docs" },
-    // { name: "Github", link: "https://github.com/vannafinance" },
-    // { name: "Technical Docs", link: "https://docs.vanna.finance/tech" },
     { name: "Whitepaper", link: "https://docsend.com/v/4hxps/whitepaper" },
     // { name: "Bug Bounty", link: "" },
   ];
@@ -56,14 +50,12 @@ const Navbar = () => {
       name: "Telegram",
       link: "https://t.me/vannaprotocolann",
       icon: "/icons/telegramLogo.svg",
-    },{
+    },
+    {
       name: "Telegram Group",
       link: "https://t.me/vannaprotocol",
       icon: "/icons/telegramLogo.svg",
     },
-    // { name: "YouTube", link: "", icon: "/icons/youtubeLogo.svg" },
-    // { name: "Reddit", link: "", icon: "/icons/redditLogo.svg" },
-    // { name: "Farcaster", link: "", icon: "/icons/farcasterLogo.svg" },
   ];
 
   const toggleMenu = (): void => {
@@ -72,7 +64,7 @@ const Navbar = () => {
 
   const closeMenuDropdown = (): void => {
     // close menu on mobile
-    if (typeof window !== 'undefined' && window.innerWidth <= 1150) {
+    if (typeof window !== "undefined" && window.innerWidth <= 1150) {
       setShowMenu(false);
     }
 
@@ -93,10 +85,12 @@ const Navbar = () => {
         <nav className="bg-white relative z-[100] w-full max-w-screen mx-auto h-[65px] flex items-center justify-between md:px-10 px-[30px]">
           <div className="w-[134px] h-full flex items-center">
             <Link href="/" className="nav__logo" target="_blank">
-              <img
+              <Image
                 src="/images/vannaLogo.svg"
                 className="w-[33.46px] object-contain"
                 alt="Vanna Finance Logo"
+                width={34}
+                height={34}
               />
             </Link>
           </div>
@@ -108,35 +102,6 @@ const Navbar = () => {
             id="nav-menu"
           >
             <ul className="nav__list">
-              {/* <div className="relative inline-block">
-                <li className="nav__item">
-                  <NavLink
-                    className="nav__link"
-                    onClick={() => setShowAppDropdown(!showAppDropdown)}
-                  >
-                    App
-                    <img
-                      src="/icons/downArrow.svg"
-                      className="w-4 h-4 inline-block ml-1"
-                    />
-                  </NavLink>
-                </li>
-                {showAppDropdown && (
-                  <div className="bg-white origin-top-right absolute -left-4 w-40 mt-0.5 rounded-md shadow-xl ring-1 ring-black ring-opacity-5 top-10 z-50 transition-all duration-300 p-1.5">
-                    {appMenu.map((item, index) => (
-                      <NavLink
-                        className="flex items-center p-3 text-sm font-medium text-[#181822] w-full rounded-lg hover:bg-[#f4f4ff]"
-                        key={"dev-" + index}
-                        to={item.link}
-                        onClick={closeMenuDropdown}
-                        target="_blank"
-                      >
-                        {item.name}
-                      </NavLink>
-                    ))}
-                  </div>
-                )}
-              </div> */}
               <div className="relative inline-block">
                 <li className="nav__item">
                   <Link
@@ -147,10 +112,12 @@ const Navbar = () => {
                     }
                   >
                     Developers
-                    <img
+                    <Image
                       src="/icons/downArrow.svg"
                       className="w-4 h-4 inline-block ml-1"
                       alt="Dropdown arrow"
+                      width={16}
+                      height={16}
                     />
                   </Link>
                 </li>
@@ -190,10 +157,12 @@ const Navbar = () => {
                     }
                   >
                     Community
-                    <img
+                    <Image
                       src="/icons/downArrow.svg"
                       className="w-4 h-4 inline-block ml-1"
                       alt="Dropdown arrow"
+                      width={16}
+                      height={16}
                     />
                   </Link>
                 </li>
@@ -207,10 +176,12 @@ const Navbar = () => {
                         onClick={closeMenuDropdown}
                         target="_blank"
                       >
-                        <img
+                        <Image
                           src={item.icon}
                           className="w-6 h-w-6 inline-block mr-2"
                           alt={item.name}
+                          width={24}
+                          height={24}
                         />
                         {item.name}
                       </Link>
@@ -224,7 +195,7 @@ const Navbar = () => {
                   className="w-fit mx-auto gradient-button cursor-pointer text-sm leading-[16.8px] font-bold"
                   redirectTo="/join_waitlist"
                 >
-                   Join Waitlist
+                  Join Waitlist
                 </Button>
               )}
             </ul>
@@ -238,9 +209,11 @@ const Navbar = () => {
           </Button>
 
           <div className="nav__toggle" id="nav-toggle" onClick={toggleMenu}>
-            <img 
-              src={showMenu ? "/icons/close.svg" : "/icons/menu.svg"} 
+            <Image
+              src={showMenu ? "/icons/close.svg" : "/icons/menu.svg"}
               alt={showMenu ? "Close menu" : "Open menu"}
+              width={24}
+              height={24}
             />
           </div>
         </nav>

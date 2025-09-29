@@ -231,7 +231,7 @@ const Navbar = () => {
 
           <Button
             className="nav__button w-fit mx-auto gradient-button cursor-pointer text-sm leading-[16.8px] font-bold"
-            redirectTo="/"
+            redirectTo="/join_waitlist"
           >
             Join Waitlist
           </Button>

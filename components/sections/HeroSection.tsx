@@ -318,7 +318,7 @@ const HeroSection = () => {
             </Button>
             <Button
               className="gradient-button text-base font-semibold"
-              redirectTo="/join_waitlist"
+              redirectTo="/join-waitlist"
             >
               Join Waitlist
             </Button>

@@ -34,7 +34,7 @@ const Navbar = () => {
   ];
 
   const developersMenu: DevelopersMenuItem[] = [
-    { name: "User Docs", link: "https://docs.vanna.finance/docs" },
+  //   { name: "User Docs", link: "https://docs.vanna.finance/docs" },
     // { name: "Github", link: "https://github.com/vannafinance" },
     // { name: "Technical Docs", link: "https://docs.vanna.finance/tech" },
     { name: "Whitepaper", link: "https://docsend.com/v/4hxps/whitepaper" },

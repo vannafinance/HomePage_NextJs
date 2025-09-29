@@ -147,7 +147,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="h-[130.20px] flex-col justify-start items-start gap-2.5 flex">
-                <div className="h-[18.04px] pt-[0.60px] pb-[0.44px] flex-col justify-start items-start flex">
+                {/* <div className="h-[18.04px] pt-[0.60px] pb-[0.44px] flex-col justify-start items-start flex">
                   <div className="justify-start items-start inline-flex">
                     <a href="https://docs.vanna.finance/docs" target="_blank">
                       <div className="text-[#76737b] text-sm font-normal leading-[16.80px] text-left">
@@ -155,7 +155,7 @@ const Footer = () => {
                       </div>
                     </a>
                   </div>
-                </div>
+                </div> */}
                 {/* <div className="h-[18.04px] pt-[0.60px] pb-[0.44px] flex-col justify-start items-start flex">
                   <div className="justify-start items-start inline-flex">
                     <a href="https://github.com/vanna-protocol" target="_blank">

@@ -6,8 +6,8 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="custom-container w-full py-16 bg-white rounded-2xl flex-col justify-start items-start gap-10 inline-flex">
-      <div className="p-10 w-full flex flex-col md:flex-row justify-between items-start gap-10">
+    <div className="custom-container w-full max-w-screen py-16 bg-white rounded-2xl flex-col justify-start items-start gap-10 inline-flex">
+      <div className="p-10 w-full  flex flex-col md:flex-row justify-between items-start gap-10">
         <div className="max-w-[433px] flex-col justify-start items-start gap-3.5 inline-flex">
           <Link
             href="/"
@@ -24,7 +24,7 @@ const Footer = () => {
           </Link>
           <div className="pb-[0.51px] flex-col justify-start items-start flex">
             <div className="text-[#76737b] text-base text-left font-medium leading-tight">
-              Vanna's goal is to empower users with seamless crypto trading and
+              Vanna&apos;s goal is to empower users with seamless crypto trading and
               lending, offering advanced tools for maximizing growth and
               control.
             </div>

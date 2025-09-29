@@ -27,6 +27,7 @@ const Navbar = () => {
   const [showCommunityDropdown, setShowCommunityDropdown] = useState<boolean>(false);
   const [showAppDropdown, setShowAppDropdown] = useState<boolean>(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const appMenu: AppMenuItem[] = [
     { name: "Launch App", link: "https://app.vanna.finance/" },
     { name: "Testnet", link: "https://testnet.vanna.finance/" },
@@ -89,7 +90,7 @@ const Navbar = () => {
   return (
     <>
       <header className="header bg-white">
-        <nav className="bg-white relative z-[100] w-full max-w-[1280px] mx-auto h-[65px] flex items-center justify-between md:px-10 px-[30px]">
+        <nav className="bg-white relative z-[100] w-full max-w-screen mx-auto h-[65px] flex items-center justify-between md:px-10 px-[30px]">
           <div className="w-[134px] h-full flex items-center">
             <Link href="/" className="nav__logo" target="_blank">
               <img

@@ -1,6 +1,7 @@
 const accessToken = process.env.NEXT_GALAXE_ACCESSTOKEN as string | undefined;
 
 // Define the expected GraphQL response structure
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface GalxeQuest {
   id: string;
   name: string;

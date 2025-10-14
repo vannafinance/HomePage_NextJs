@@ -39,7 +39,7 @@ interface EligibilityResult {
 interface WaitlistFormData {
   evm_address: string;
   email: string;
-  discord: string;
+  discord_username: string;
   x_handle: string;
   telegram_handle: string;
 }
@@ -68,7 +68,7 @@ export default function JoinWaitlist() {
   const [formData, setFormData] = useState<WaitlistFormData>({
     evm_address: "",
     email: "",
-    discord: "",
+    discord_username: "",
     x_handle: "",
     telegram_handle: "",
   });
@@ -114,39 +114,6 @@ export default function JoinWaitlist() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Check Galxe quest completion via API route
-    const questId = "GCaUtt8sek"; // Replace with actual quest ID
-    try {
-      addNotification("info", "Verifying quest completion on Galxe...");
-      const response = await fetch("/api/check-eligibility", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ questId, userAddress: formData.evm_address }),
-      });
-      const eligibility: EligibilityResponse = await response.json();
-
-      if (!response.ok || !eligibility.isCompleted) {
-        setJoinwaitlistpop(true);
-        setJoinwaitlistMessage(
-          `Quest not completed for ${formData.evm_address}. Complete the Galxe quest first to join the waitlist.`
-        );
-        return;
-      }
-
-      addNotification("success", `Quest completed! Proceeding to waitlist...`);
-    } catch (err: unknown) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Unknown error occurred";
-      console.error("Galxe check failed:", err);
-      setJoinwaitlistpop(true);
-      setJoinwaitlistMessage(
-        `Error checking quest completion: ${errorMessage}. Please try again.`
-      );
-      return;
-    }
-
     if (!authenticated || !user) {
       addNotification(
         "error",
@@ -182,7 +149,7 @@ export default function JoinWaitlist() {
         {
           evm_address: formData.evm_address,
           email: formData.email,
-          discord: formData.discord,
+          discord_username: formData.discord_username,
           x_handle: formData.x_handle,
           telegram_handle: formData.telegram_handle,
           user_id: user?.id || null, // Ensure user_id is not undefined
@@ -195,7 +162,7 @@ export default function JoinWaitlist() {
       setFormData({
         evm_address: "",
         email: "",
-        discord: "",
+        discord_username: "",
         x_handle: "",
         telegram_handle: "",
       });
@@ -262,6 +229,9 @@ export default function JoinWaitlist() {
                 <div key={key}>
                   <label className="block text-sm font-medium text-gray-700 mb-1 text-left">
                     {key.replace("_", " ").toUpperCase()}
+                    {(key === "email" || key === "evm_address") && (
+                      <span className="text-red-500 ml-1">*</span>
+                    )}
                   </label>
                   <input
                     type={key === "email" ? "email" : "text"}

@@ -92,7 +92,7 @@ export default function JoinWaitlist() {
       const response = await fetch("/api/auth");
       const data = await response.json();
       if (data.status === 200 && data.message) {
-        setUser(data.message);
+        setUser(data.message.user);
         setIsAuthenticated(true);
       }
     } catch (err: unknown) {

@@ -38,9 +38,10 @@ export async function POST(req: Request) {
       exists: false,
       message: 'EVM Address not found in waitlist.',
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error';
     return NextResponse.json(
-      { error: error?.message || 'Internal server error' },
+      { error: errorMessage },
       { status: 500 }
     );
   }

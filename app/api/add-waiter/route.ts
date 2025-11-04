@@ -91,9 +91,10 @@ export async function POST(req: Request) {
       { message: 'Successfully joined the waitlist', data },
       { status: 200 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error';
     return NextResponse.json(
-      { error: error?.message || 'Internal server error' },
+      { error: errorMessage },
       { status: 500 }
     );
   }

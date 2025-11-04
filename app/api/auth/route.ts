@@ -1,6 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
 
 export async function GET() {
   const email = process.env.NEXT_SUPABASE_USER_EMAIL;
@@ -14,7 +13,6 @@ export async function GET() {
   }
 
   try {
-    const cookieStore = await cookies();
     const supabaseUrl = process.env.NEXT_SUPABASE_URL!;
     const supabaseServiceKey = process.env.NEXT_API_KEY!;
 

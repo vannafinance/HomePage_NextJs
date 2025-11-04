@@ -9,8 +9,6 @@ import React, {
 } from "react";
 import TiltImage from "@/components/Interactive";
 import Notification from "@/components/notification";
-import { supabase } from "@/lib/supabase";
-
 // Define User type for authenticated user
 interface User {
   id: string;
@@ -128,35 +126,19 @@ export default function JoinWaitlist() {
     }
 
     try {
-      const { data: existing, error: checkError } = await supabase
-        .from("waitlist")
-        .select("id")
-        .or(
-          `email.eq.${formData.email},evm_address.eq.${formData.evm_address}`
-        );
-
-      if (checkError) throw checkError;
-
-      if (existing?.length > 0) {
-        addNotification(
-          "error",
-          "Email or EVM Address already exists in the waitlist."
-        );
-        return;
-      }
-
-      const { error } = await supabase.from("waitlist").insert([
-        {
-          evm_address: formData.evm_address,
-          email: formData.email,
-          discord_username: formData.discord_username,
-          x_handle: formData.x_handle,
-          telegram_handle: formData.telegram_handle,
-          user_id: user?.id || null, // Ensure user_id is not undefined
+      const response = await fetch("/api/add-waiter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      ]);
+        body: JSON.stringify(formData),
+      });
 
-      if (error) throw error;
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to join waitlist");
+      }
 
       addNotification("success", "Successfully joined the waitlist!");
       setFormData({
@@ -182,18 +164,21 @@ export default function JoinWaitlist() {
     }
 
     try {
-      const { data, error } = await supabase
-        .from("waitlist")
-        .select("id,email")
-        .eq("evm_address", checkEvm);
+      const response = await fetch("/api/check-evm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ evm_address: checkEvm }),
+      });
 
-      if (error) throw error;
+      const result = await response.json();
 
-      setPopupMessage(
-        data?.length > 0
-          ? `EVM Address exists in waitlist! Email: ${data[0].email}`
-          : "EVM Address not found in waitlist."
-      );
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to check EVM address");
+      }
+
+      setPopupMessage(result.message);
       setPopupVisible(true);
     } catch (err: unknown) {
       const errorMessage =
